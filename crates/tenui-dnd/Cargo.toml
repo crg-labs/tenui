@@ -1,0 +1,11 @@
+[package]
+name = "tenui-dnd"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Tenui Internal Spatial Drag-and-Drop and Interactive Docking Engine"
+
+[dependencies]
+tenui-core.workspace = true

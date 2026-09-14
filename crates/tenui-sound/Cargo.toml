@@ -1,0 +1,11 @@
+[package]
+name = "tenui-sound"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Tenui Tactile Terminal Audio & Haptic Feedback Bridge"
+
+[dependencies]
+tenui-core.workspace = true

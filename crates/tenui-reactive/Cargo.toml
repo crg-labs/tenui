@@ -1,0 +1,21 @@
+[package]
+name = "tenui-reactive"
+description = "Fine-grained signal graph, transactional batching, and Two-Lane Invalidation engine for Tenui"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+tenui-core.workspace = true
+unicode-width.workspace = true
+bitflags.workspace = true
+taffy.workspace = true
+
+[dev-dependencies]
+criterion.workspace = true
+
+[[bench]]
+name = "signals"
+harness = false

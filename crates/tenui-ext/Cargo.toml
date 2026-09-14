@@ -1,0 +1,20 @@
+[package]
+name = "tenui-ext"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Tenui Layer 6: Extensibility, WASM Component Model (WIT) plugin contract, CustomWidget trait, and Tower input middleware"
+
+[dependencies]
+tenui-core.workspace = true
+tenui-layout.workspace = true
+tenui-reactive.workspace = true
+crossterm.workspace = true
+taffy.workspace = true
+
+[features]
+# Reserved: wasmtime + WASI P2 Component Model backend.
+# Not yet wired. The native runtime is the default.
+wasm-runtime = []

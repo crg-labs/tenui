@@ -1,0 +1,11 @@
+[package]
+name = "tenui-chaos"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Deterministic Chaos Engineering & PTY Fuzzing Suite for the Tenui TUI engine"
+
+[dependencies]
+tenui-core.workspace = true

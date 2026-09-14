@@ -1,0 +1,86 @@
+[workspace]
+resolver = "3"
+members = [
+    "crates/tenui-core",
+    "crates/tenui-layout",
+    "crates/tenui-reactive",
+    "crates/tenui-compositor",
+    "crates/tenui-anim",
+    "crates/tenui-std",
+    "crates/tenui-vfx",
+    "crates/tenui-ext",
+    "crates/tenui-macros",
+    "crates/tenui-dnd",
+    "crates/tenui-virt",
+    "crates/tenui-text",
+    "crates/tenui-session",
+    "crates/tenui-sound",
+    "crates/tenui-wgpu",
+    "crates/tenui-simd",
+    "crates/tenui-collab",
+    "crates/tenui-media",
+    "crates/tenui-math",
+    "crates/tenui-hid",
+    "crates/tenui-chaos",
+    "crates/tenui-runtime",
+    "crates/tenui",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.85"
+authors = ["Tenui Contributors"]
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/crg-labs/tenui"
+
+[workspace.dependencies]
+bitflags = "2.13"
+unicode-width = "0.2"
+# Logging facade only — no subscriber/backend. TUI apps attach their own sink
+tracing = "0.1"
+crossterm = { version = "0.29", default-features = false, features = ["events", "bracketed-paste"] }
+taffy = "0.14"
+signal-hook = "0.4"
+pulldown-cmark = { version = "0.13", default-features = false }
+serde = { version = "1.0", features = ["derive"] }
+tokio = { version = "1", default-features = false, features = ["rt", "sync", "macros"] }
+criterion = { version = "0.8", default-features = false }
+
+# Internal workspace crates
+tenui-core = { path = "crates/tenui-core" }
+tenui-layout = { path = "crates/tenui-layout" }
+tenui-reactive = { path = "crates/tenui-reactive" }
+tenui-compositor = { path = "crates/tenui-compositor" }
+tenui-anim = { path = "crates/tenui-anim" }
+tenui-std = { path = "crates/tenui-std" }
+tenui-vfx = { path = "crates/tenui-vfx" }
+tenui-ext = { path = "crates/tenui-ext" }
+tenui-macros = { path = "crates/tenui-macros" }
+tenui-dnd = { path = "crates/tenui-dnd" }
+tenui-virt = { path = "crates/tenui-virt" }
+tenui-text = { path = "crates/tenui-text" }
+tenui-session = { path = "crates/tenui-session" }
+tenui-sound = { path = "crates/tenui-sound" }
+tenui-wgpu = { path = "crates/tenui-wgpu" }
+tenui-simd = { path = "crates/tenui-simd" }
+tenui-collab = { path = "crates/tenui-collab" }
+tenui-media = { path = "crates/tenui-media" }
+tenui-math = { path = "crates/tenui-math" }
+tenui-hid = { path = "crates/tenui-hid" }
+tenui-chaos = { path = "crates/tenui-chaos" }
+tenui-runtime = { path = "crates/tenui-runtime" }
+tenui = { path = "crates/tenui" }
+
+[profile.dev]
+debug = "line-tables-only"
+
+[profile.dev.package."*"]
+opt-level = 3
+
+[profile.release]
+opt-level = 3
+codegen-units = 1
+lto = "fat"
+strip = "symbols"
+panic = "abort"

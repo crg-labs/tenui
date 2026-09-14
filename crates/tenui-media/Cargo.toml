@@ -1,0 +1,11 @@
+[package]
+name = "tenui-media"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Hardware-accelerated half-block video streaming and dynamic backpressure frame dropping for the Tenui TUI engine"
+
+[dependencies]
+tenui-core.workspace = true

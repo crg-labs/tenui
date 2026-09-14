@@ -1,0 +1,13 @@
+[package]
+name = "tenui-macros"
+description = "Declarative view! {} procedural macro compiling into zero-cost layout builders for Tenui"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[lib]
+proc-macro = true
+
+[dependencies]

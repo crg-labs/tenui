@@ -1,0 +1,11 @@
+[package]
+name = "tenui-anim"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Tenui Layer 2: Sub-cell kinetics, analytical damped harmonic springs, and fractional micro-stepping"
+
+[dependencies]
+tenui-core.workspace = true

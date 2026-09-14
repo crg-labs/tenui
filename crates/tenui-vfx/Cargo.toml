@@ -1,0 +1,18 @@
+[package]
+name = "tenui-vfx"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Multi-Pass Spatial Compositing, Optical Filtering, Tactile Surfaces, and Procedural Shaders for Tenui"
+
+[dependencies]
+tenui-core.workspace = true
+tenui-anim.workspace = true
+tenui-reactive.workspace = true
+unicode-width.workspace = true
+bitflags.workspace = true
+
+[dev-dependencies]
+tenui-layout.workspace = true

@@ -1,0 +1,11 @@
+[package]
+name = "tenui-virt"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Tenui Heterogeneous Dynamic-Height Virtualization with Prefix-Sum Fenwick Tree"
+
+[dependencies]
+tenui-core.workspace = true

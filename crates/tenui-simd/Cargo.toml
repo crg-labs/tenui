@@ -1,0 +1,16 @@
+[package]
+name = "tenui-simd"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Tenui SIMD-Vectorized Differential Compositing Engine"
+
+[dependencies]
+tenui-core.workspace = true
+
+[features]
+# AVX-512 backend for the diff scanner (requires a recent toolchain; off by default,
+# the default build uses AVX2 + portable fallback).
+avx512 = []

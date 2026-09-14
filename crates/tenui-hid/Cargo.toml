@@ -1,0 +1,11 @@
+[package]
+name = "tenui-hid"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Universal Hardware HID & Peripheral Controller Bridge for the Tenui TUI engine"
+
+[dependencies]
+tenui-core.workspace = true

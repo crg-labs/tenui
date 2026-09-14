@@ -1,0 +1,19 @@
+[package]
+name = "tenui-std"
+description = "Batteries-included widget catalog, accessible theming, and headless test harness for the Tenui TUI framework"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+tenui-core.workspace = true
+tenui-layout.workspace = true
+tenui-reactive.workspace = true
+tenui-compositor.workspace = true
+tenui-anim.workspace = true
+tenui-text.workspace = true
+tenui-math.workspace = true
+unicode-width.workspace = true
+pulldown-cmark.workspace = true

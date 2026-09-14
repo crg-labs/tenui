@@ -1,0 +1,11 @@
+[package]
+name = "tenui-math"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Sub-cell TeX/Typst mathematical typesetting and proportional box layout for the Tenui TUI engine"
+
+[dependencies]
+tenui-core.workspace = true

@@ -1,0 +1,12 @@
+[package]
+name = "tenui-compositor"
+description = "Off-screen spatial layer compositing, occlusion culling, and sub-cell vector graphics for Tenui"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+tenui-core.workspace = true
+tenui-layout.workspace = true

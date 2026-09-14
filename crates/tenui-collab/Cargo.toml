@@ -1,0 +1,11 @@
+[package]
+name = "tenui-collab"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Tenui Multi-Seat Real-Time Collaboration & CRDT Presence Engine"
+
+[dependencies]
+tenui-core.workspace = true

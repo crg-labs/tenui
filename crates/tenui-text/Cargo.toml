@@ -1,0 +1,11 @@
+[package]
+name = "tenui-text"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Tenui Multi-Cursor Engine and Branching Undo Trees"
+
+[dependencies]
+tenui-core.workspace = true

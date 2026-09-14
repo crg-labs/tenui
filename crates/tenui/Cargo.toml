@@ -1,0 +1,85 @@
+[package]
+name = "tenui"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "A layered, batteries-included terminal UI framework: retained reactive runtime, widget standard library, layout, animation, and more."
+readme = "../../README.md"
+homepage = "https://github.com/crg-labs/tenui"
+documentation = "https://docs.rs/tenui"
+keywords = ["tui", "terminal", "ui", "widgets", "crossterm"]
+categories = ["command-line-interface", "gui"]
+
+[dependencies]
+tenui-core.workspace = true
+tenui-layout = { workspace = true, optional = true }
+tenui-reactive = { workspace = true, optional = true }
+tenui-compositor = { workspace = true, optional = true }
+tenui-anim = { workspace = true, optional = true }
+tenui-std = { workspace = true, optional = true }
+tenui-vfx = { workspace = true, optional = true }
+tenui-ext = { workspace = true, optional = true }
+tenui-macros = { workspace = true, optional = true }
+tenui-dnd = { workspace = true, optional = true }
+tenui-virt = { workspace = true, optional = true }
+tenui-text = { workspace = true, optional = true }
+tenui-session = { workspace = true, optional = true }
+tenui-sound = { workspace = true, optional = true }
+tenui-wgpu = { workspace = true, optional = true }
+tenui-simd = { workspace = true, optional = true }
+tenui-collab = { workspace = true, optional = true }
+tenui-media = { workspace = true, optional = true }
+tenui-math = { workspace = true, optional = true }
+tenui-hid = { workspace = true, optional = true }
+tenui-chaos = { workspace = true, optional = true }
+tenui-runtime = { workspace = true, optional = true }
+crossterm.workspace = true
+taffy.workspace = true
+
+[features]
+default = [
+    "layer0", "layer1", "layer2", "anim", "runtime", "std", "vfx", "ext", "macros",
+    "dnd", "virt", "text", "session", "sound", "wgpu", "advanced",
+    "simd", "collab", "media", "math", "hid", "chaos", "frontier",
+]
+layer0 = ["dep:tenui-layout"]
+layer1 = ["layer0", "dep:tenui-reactive"]
+layer2 = ["layer1", "dep:tenui-compositor"]
+anim = ["dep:tenui-anim"]
+runtime = ["layer1", "anim", "dep:tenui-runtime"]
+std = ["layer2", "anim", "dep:tenui-std"]
+vfx = ["layer2", "anim", "dep:tenui-vfx"]
+ext = ["layer2", "dep:tenui-ext"]
+macros = ["dep:tenui-macros"]
+dnd = ["dep:tenui-dnd"]
+virt = ["dep:tenui-virt"]
+text = ["dep:tenui-text"]
+session = ["dep:tenui-session"]
+sound = ["dep:tenui-sound"]
+wgpu = ["dep:tenui-wgpu"]
+advanced = ["dnd", "virt", "text", "session", "sound", "wgpu"]
+simd = ["dep:tenui-simd", "tenui-runtime?/simd"]
+collab = ["dep:tenui-collab"]
+media = ["dep:tenui-media"]
+math = ["dep:tenui-math"]
+hid = ["dep:tenui-hid"]
+chaos = ["dep:tenui-chaos"]
+frontier = ["simd", "collab", "media", "math", "hid", "chaos"]
+tokio = ["runtime", "tenui-runtime?/tokio"]
+full = ["default", "frontier"]
+
+[dev-dependencies]
+tenui-dnd.workspace = true
+tenui-virt.workspace = true
+tenui-text.workspace = true
+tenui-session.workspace = true
+tenui-sound.workspace = true
+tenui-wgpu.workspace = true
+tenui-simd.workspace = true
+tenui-collab.workspace = true
+tenui-media.workspace = true
+tenui-math.workspace = true
+tenui-hid.workspace = true
+tenui-chaos.workspace = true

@@ -1,0 +1,11 @@
+[package]
+name = "tenui-wgpu"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Tenui Dual-Head Native GPU Canvas Runner with Instanced Textured Quad Pipeline"
+
+[dependencies]
+tenui-core.workspace = true

@@ -1,0 +1,20 @@
+[package]
+name = "tenui-runtime"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Tenui retained reactive runtime: the App reactor (Two-Lane invalidation + persistent Taffy + ActiveTicker demand scheduling)"
+
+[dependencies]
+tenui-core.workspace = true
+tenui-reactive.workspace = true
+tenui-anim.workspace = true
+tenui-simd = { workspace = true, optional = true }
+tokio = { workspace = true, optional = true }
+taffy.workspace = true
+
+[features]
+simd = ["dep:tenui-simd"]
+tokio = ["dep:tokio"]
