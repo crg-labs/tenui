@@ -61,12 +61,12 @@ fn parse_block(var_name: &str, stream: TokenStream) -> String {
                 let mut style_mods = String::new();
 
                 // Check for optional [style: value] attributes
-                if let Some(TokenTree::Group(attr_group)) = iter.peek()
-                    && attr_group.delimiter() == Delimiter::Bracket
-                {
-                    let attr_stream = attr_group.stream();
-                    style_mods = parse_style_attributes(attr_stream);
-                    iter.next(); // consume bracket group
+                if let Some(TokenTree::Group(attr_group)) = iter.peek() {
+                    if attr_group.delimiter() == Delimiter::Bracket {
+                        let attr_stream = attr_group.stream();
+                        style_mods = parse_style_attributes(attr_stream);
+                        iter.next(); // consume bracket group
+                    }
                 }
 
                 // Parse body/arguments

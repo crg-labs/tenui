@@ -5,7 +5,7 @@ basics for getting started.
 
 ## Prerequisites
 
-- Rust **1.86+** (edition 2024)
+- Rust **1.87+** (edition 2024)
 - A terminal emulator that supports the alternate screen
 
 ## Building
