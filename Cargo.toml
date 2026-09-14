@@ -48,29 +48,29 @@ tokio = { version = "1", default-features = false, features = ["rt", "sync", "ma
 criterion = { version = "0.8", default-features = false }
 
 # Internal workspace crates
-tenui-core = { path = "crates/tenui-core" }
-tenui-layout = { path = "crates/tenui-layout" }
-tenui-reactive = { path = "crates/tenui-reactive" }
-tenui-compositor = { path = "crates/tenui-compositor" }
-tenui-anim = { path = "crates/tenui-anim" }
-tenui-std = { path = "crates/tenui-std" }
-tenui-vfx = { path = "crates/tenui-vfx" }
-tenui-ext = { path = "crates/tenui-ext" }
-tenui-macros = { path = "crates/tenui-macros" }
-tenui-dnd = { path = "crates/tenui-dnd" }
-tenui-virt = { path = "crates/tenui-virt" }
-tenui-text = { path = "crates/tenui-text" }
-tenui-session = { path = "crates/tenui-session" }
-tenui-sound = { path = "crates/tenui-sound" }
-tenui-wgpu = { path = "crates/tenui-wgpu" }
-tenui-simd = { path = "crates/tenui-simd" }
-tenui-collab = { path = "crates/tenui-collab" }
-tenui-media = { path = "crates/tenui-media" }
-tenui-math = { path = "crates/tenui-math" }
-tenui-hid = { path = "crates/tenui-hid" }
-tenui-chaos = { path = "crates/tenui-chaos" }
-tenui-runtime = { path = "crates/tenui-runtime" }
-tenui = { path = "crates/tenui" }
+tenui-core = { path = "crates/tenui-core", version = "0.1.0" }
+tenui-layout = { path = "crates/tenui-layout", version = "0.1.0" }
+tenui-reactive = { path = "crates/tenui-reactive", version = "0.1.0" }
+tenui-compositor = { path = "crates/tenui-compositor", version = "0.1.0" }
+tenui-anim = { path = "crates/tenui-anim", version = "0.1.0" }
+tenui-std = { path = "crates/tenui-std", version = "0.1.0" }
+tenui-vfx = { path = "crates/tenui-vfx", version = "0.1.0" }
+tenui-ext = { path = "crates/tenui-ext", version = "0.1.0" }
+tenui-macros = { path = "crates/tenui-macros", version = "0.1.0" }
+tenui-dnd = { path = "crates/tenui-dnd", version = "0.1.0" }
+tenui-virt = { path = "crates/tenui-virt", version = "0.1.0" }
+tenui-text = { path = "crates/tenui-text", version = "0.1.0" }
+tenui-session = { path = "crates/tenui-session", version = "0.1.0" }
+tenui-sound = { path = "crates/tenui-sound", version = "0.1.0" }
+tenui-wgpu = { path = "crates/tenui-wgpu", version = "0.1.0" }
+tenui-simd = { path = "crates/tenui-simd", version = "0.1.0" }
+tenui-collab = { path = "crates/tenui-collab", version = "0.1.0" }
+tenui-media = { path = "crates/tenui-media", version = "0.1.0" }
+tenui-math = { path = "crates/tenui-math", version = "0.1.0" }
+tenui-hid = { path = "crates/tenui-hid", version = "0.1.0" }
+tenui-chaos = { path = "crates/tenui-chaos", version = "0.1.0" }
+tenui-runtime = { path = "crates/tenui-runtime", version = "0.1.0" }
+tenui = { path = "crates/tenui", version = "0.1.0" }
 
 [profile.dev]
 debug = "line-tables-only"
