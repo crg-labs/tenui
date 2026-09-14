@@ -85,7 +85,7 @@ jobs:
     name: Dry run (validate packaging)
     needs: gate
     runs-on: ubuntu-latest
-    if: ${{ inputs.dry-run || github.event_name == 'push' }}
+    if: ${{ inputs.dry-run }}
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
