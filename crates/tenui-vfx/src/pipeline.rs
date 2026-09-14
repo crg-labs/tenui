@@ -51,12 +51,7 @@ impl VfxPipeline {
     }
 
     /// Executes Pass D+: Glow emission around or within a content region.
-    pub fn pass_d_glow(
-        surface: &mut CanvasSubviewMut,
-        content_bounds: Rect,
-        glow: &GlowEffect,
-        elapsed_secs: f32,
-    ) {
+    pub fn pass_d_glow(surface: &mut CanvasSubviewMut, content_bounds: Rect, glow: &GlowEffect, elapsed_secs: f32) {
         glow.render(surface, content_bounds, elapsed_secs);
     }
 

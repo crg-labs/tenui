@@ -235,12 +235,9 @@ mod tests {
         let mut buf = Buffer::new(40, 10);
         let mut ui = Ui::new();
         ui.column(Style::default(), |ui| {
-            ui.leaf(
-                Style::default().width_cells(10.0).height_cells(3.0),
-                |sv| {
-                    sv.set_string(0, 0, "ABC", Color::Reset, Color::Reset, Modifier::empty());
-                },
-            );
+            ui.leaf(Style::default().width_cells(10.0).height_cells(3.0), |sv| {
+                sv.set_string(0, 0, "ABC", Color::Reset, Color::Reset, Modifier::empty());
+            });
         });
         ui.render_to_buffer(&mut buf);
         assert_eq!(cell_char(&buf, 0, 0), "A");
@@ -253,18 +250,12 @@ mod tests {
         let mut buf = Buffer::new(40, 10);
         let mut ui = Ui::new();
         ui.row(Style::default(), |ui| {
-            ui.leaf(
-                Style::default().width_cells(10.0).height_cells(5.0),
-                |sv| {
-                    sv.set_string(0, 0, "L", Color::Reset, Color::Reset, Modifier::empty());
-                },
-            );
-            ui.leaf(
-                Style::default().width_cells(10.0).height_cells(5.0),
-                |sv| {
-                    sv.set_string(0, 0, "R", Color::Reset, Color::Reset, Modifier::empty());
-                },
-            );
+            ui.leaf(Style::default().width_cells(10.0).height_cells(5.0), |sv| {
+                sv.set_string(0, 0, "L", Color::Reset, Color::Reset, Modifier::empty());
+            });
+            ui.leaf(Style::default().width_cells(10.0).height_cells(5.0), |sv| {
+                sv.set_string(0, 0, "R", Color::Reset, Color::Reset, Modifier::empty());
+            });
         });
         ui.render_to_buffer(&mut buf);
         assert_eq!(cell_char(&buf, 0, 0), "L");
@@ -276,18 +267,12 @@ mod tests {
         let mut buf = Buffer::new(40, 10);
         let mut ui = Ui::new();
         ui.column(Style::default(), |ui| {
-            ui.leaf(
-                Style::default().width_cells(10.0).height_cells(3.0),
-                |sv| {
-                    sv.set_string(0, 0, "T", Color::Reset, Color::Reset, Modifier::empty());
-                },
-            );
-            ui.leaf(
-                Style::default().width_cells(10.0).height_cells(3.0),
-                |sv| {
-                    sv.set_string(0, 0, "B", Color::Reset, Color::Reset, Modifier::empty());
-                },
-            );
+            ui.leaf(Style::default().width_cells(10.0).height_cells(3.0), |sv| {
+                sv.set_string(0, 0, "T", Color::Reset, Color::Reset, Modifier::empty());
+            });
+            ui.leaf(Style::default().width_cells(10.0).height_cells(3.0), |sv| {
+                sv.set_string(0, 0, "B", Color::Reset, Color::Reset, Modifier::empty());
+            });
         });
         ui.render_to_buffer(&mut buf);
         assert_eq!(cell_char(&buf, 0, 0), "T");
@@ -300,25 +285,16 @@ mod tests {
         let mut ui = Ui::new();
         ui.column(Style::default(), |ui| {
             ui.row(Style::default().height_cells(3.0), |ui| {
-                ui.leaf(
-                    Style::default().width_cells(20.0).height_cells(3.0),
-                    |sv| {
-                        sv.set_string(0, 0, "A", Color::Reset, Color::Reset, Modifier::empty());
-                    },
-                );
-                ui.leaf(
-                    Style::default().width_cells(20.0).height_cells(3.0),
-                    |sv| {
-                        sv.set_string(0, 0, "B", Color::Reset, Color::Reset, Modifier::empty());
-                    },
-                );
+                ui.leaf(Style::default().width_cells(20.0).height_cells(3.0), |sv| {
+                    sv.set_string(0, 0, "A", Color::Reset, Color::Reset, Modifier::empty());
+                });
+                ui.leaf(Style::default().width_cells(20.0).height_cells(3.0), |sv| {
+                    sv.set_string(0, 0, "B", Color::Reset, Color::Reset, Modifier::empty());
+                });
             });
-            ui.leaf(
-                Style::default().width_cells(40.0).height_cells(3.0),
-                |sv| {
-                    sv.set_string(0, 0, "C", Color::Reset, Color::Reset, Modifier::empty());
-                },
-            );
+            ui.leaf(Style::default().width_cells(40.0).height_cells(3.0), |sv| {
+                sv.set_string(0, 0, "C", Color::Reset, Color::Reset, Modifier::empty());
+            });
         });
         ui.render_to_buffer(&mut buf);
         assert_eq!(cell_char(&buf, 0, 0), "A");
@@ -370,12 +346,9 @@ mod tests {
         let mut buf = Buffer::new(40, 10);
         let mut ui = Ui::new();
         ui.column(Style::default(), |ui| {
-            ui.leaf(
-                Style::default().width_percent(0.5).height_cells(2.0),
-                |sv| {
-                    sv.set_string(0, 0, "X", Color::Reset, Color::Reset, Modifier::empty());
-                },
-            );
+            ui.leaf(Style::default().width_percent(0.5).height_cells(2.0), |sv| {
+                sv.set_string(0, 0, "X", Color::Reset, Color::Reset, Modifier::empty());
+            });
         });
         ui.render_to_buffer(&mut buf);
         assert_eq!(cell_char(&buf, 0, 0), "X");

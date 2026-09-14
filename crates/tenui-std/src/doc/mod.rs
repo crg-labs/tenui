@@ -1,20 +1,20 @@
-mod inline;
 mod diff;
+mod inline;
 mod markdown;
 
-pub use inline::parse_inline_markdown;
 pub use diff::{
-    AlignedDiffLine, ChangeType, DiffHunk, DiffLine, DiffMode, DiffView, IntraLineHighlights,
-    MyersDiff, compute_diff_async, zip_aligned_diff,
+    AlignedDiffLine, ChangeType, DiffHunk, DiffLine, DiffMode, DiffView, IntraLineHighlights, MyersDiff,
+    compute_diff_async, zip_aligned_diff,
 };
+pub use inline::parse_inline_markdown;
 pub use markdown::{MarkdownBlock, MarkdownRenderer, MarkdownView};
 
 #[cfg(test)]
 mod inline_tests {
-    use super::*;
     use tenui_core::Modifier;
-    use crate::text_table::TableAlignment;
-    use crate::theme::ThemePalette;
+
+    use super::*;
+    use crate::{text_table::TableAlignment, theme::ThemePalette};
 
     #[test]
     fn parse_inline_link_becomes_labeled_arrow() {

@@ -227,7 +227,7 @@ mod tests {
         sig.subscribe(move || {
             c.set(c.get() + 1);
         });
-        sig.update(|v| *v = *v);
+        sig.update(|v| *v += 0);
         assert_eq!(count.get(), 1, "update fires even without value change");
     }
 

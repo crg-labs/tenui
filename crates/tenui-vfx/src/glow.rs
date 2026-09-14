@@ -229,11 +229,7 @@ impl BloomStack {
     /// A preset neon bloom: a tight bright core halo plus a wider diffuse outer glow.
     pub fn neon(color: Color) -> Self {
         let (r, g, b) = color.to_rgb();
-        let bright = Color::Rgb(
-            r.saturating_add(60),
-            g.saturating_add(60),
-            b.saturating_add(60),
-        );
+        let bright = Color::Rgb(r.saturating_add(60), g.saturating_add(60), b.saturating_add(60));
         Self::new()
             .push(
                 GlowEffect::new(bright)
@@ -258,8 +254,9 @@ impl Default for BloomStack {
 
 #[cfg(test)]
 mod tests {
-    use super::*;
     use tenui_core::buffer::Buffer;
+
+    use super::*;
 
     fn make_surface(w: u16, h: u16, bg: Color) -> Buffer {
         let mut buf = Buffer::new(w, h);
@@ -276,10 +273,20 @@ mod tests {
     #[test]
     fn outer_glow_modifies_surrounding_cells() {
         let mut buf = make_surface(20, 10, Color::Rgb(0, 0, 0));
-        let content = Rect { x: 5, y: 3, width: 10, height: 4 };
+        let content = Rect {
+            x: 5,
+            y: 3,
+            width: 10,
+            height: 4,
+        };
         let glow = GlowEffect::NEON_CYAN;
         {
-            let bounds = Rect { x: 0, y: 0, width: 20, height: 10 };
+            let bounds = Rect {
+                x: 0,
+                y: 0,
+                width: 20,
+                height: 10,
+            };
             let mut sv = buf.subview_mut(bounds);
             glow.render(&mut sv, content, 0.0);
         }
@@ -296,13 +303,23 @@ mod tests {
     #[test]
     fn inner_glow_modifies_interior_cells() {
         let mut buf = make_surface(20, 10, Color::Rgb(0, 0, 0));
-        let content = Rect { x: 2, y: 2, width: 16, height: 6 };
+        let content = Rect {
+            x: 2,
+            y: 2,
+            width: 16,
+            height: 6,
+        };
         let glow = GlowEffect::new(Color::Rgb(255, 100, 0))
             .with_inner_radius(2.0)
             .with_outer_radius(0.0)
             .with_intensity(0.8);
         {
-            let bounds = Rect { x: 0, y: 0, width: 20, height: 10 };
+            let bounds = Rect {
+                x: 0,
+                y: 0,
+                width: 20,
+                height: 10,
+            };
             let mut sv = buf.subview_mut(bounds);
             glow.render(&mut sv, content, 0.0);
         }
@@ -315,8 +332,18 @@ mod tests {
         let glow = GlowEffect::PULSE_GREEN;
         let mut buf_a = make_surface(20, 10, Color::Rgb(0, 0, 0));
         let mut buf_b = make_surface(20, 10, Color::Rgb(0, 0, 0));
-        let content = Rect { x: 5, y: 3, width: 10, height: 4 };
-        let bounds = Rect { x: 0, y: 0, width: 20, height: 10 };
+        let content = Rect {
+            x: 5,
+            y: 3,
+            width: 10,
+            height: 4,
+        };
+        let bounds = Rect {
+            x: 0,
+            y: 0,
+            width: 20,
+            height: 10,
+        };
         {
             let mut sv = buf_a.subview_mut(bounds);
             glow.render(&mut sv, content, 0.0);
@@ -338,9 +365,21 @@ mod tests {
 
     #[test]
     fn falloff_variants_produce_different_results() {
-        let content = Rect { x: 5, y: 3, width: 10, height: 4 };
-        let bounds = Rect { x: 0, y: 0, width: 20, height: 10 };
-        let base = GlowEffect::new(Color::Rgb(255, 0, 0)).with_outer_radius(3.0).with_intensity(0.8);
+        let content = Rect {
+            x: 5,
+            y: 3,
+            width: 10,
+            height: 4,
+        };
+        let bounds = Rect {
+            x: 0,
+            y: 0,
+            width: 20,
+            height: 10,
+        };
+        let base = GlowEffect::new(Color::Rgb(255, 0, 0))
+            .with_outer_radius(3.0)
+            .with_intensity(0.8);
 
         let mut buf_gauss = make_surface(20, 10, Color::Rgb(0, 0, 0));
         let mut buf_exp = make_surface(20, 10, Color::Rgb(0, 0, 0));
@@ -352,7 +391,8 @@ mod tests {
         }
         {
             let mut sv = buf_exp.subview_mut(bounds);
-            base.with_falloff(GlowFalloff::Exponential).render(&mut sv, content, 0.0);
+            base.with_falloff(GlowFalloff::Exponential)
+                .render(&mut sv, content, 0.0);
         }
         {
             let mut sv = buf_lin.subview_mut(bounds);
@@ -362,6 +402,9 @@ mod tests {
         let g = buf_gauss.get(3, 3).unwrap().bg;
         let e = buf_exp.get(3, 3).unwrap().bg;
         let l = buf_lin.get(3, 3).unwrap().bg;
-        assert!(g != e || e != l, "different falloffs should produce different glow intensities");
+        assert!(
+            g != e || e != l,
+            "different falloffs should produce different glow intensities"
+        );
     }
 }

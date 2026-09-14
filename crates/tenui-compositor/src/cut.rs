@@ -102,7 +102,11 @@ mod tests {
         let cutter = Rect::new(0, 3, 4, 4);
         let frags = cut_rect(subject, cutter);
         assert_eq!(frags.len(), 3);
-        assert!(frags.iter().all(|f| f.x >= cutter.right() || f.y < cutter.y || f.y >= cutter.bottom()));
+        assert!(
+            frags
+                .iter()
+                .all(|f| f.x >= cutter.right() || f.y < cutter.y || f.y >= cutter.bottom())
+        );
     }
 
     #[test]
@@ -111,7 +115,11 @@ mod tests {
         let cutter = Rect::new(3, 0, 4, 4);
         let frags = cut_rect(subject, cutter);
         assert!(!frags.is_empty());
-        assert!(frags.iter().all(|f| f.y >= cutter.bottom() || f.x < cutter.x || f.x >= cutter.right()));
+        assert!(
+            frags
+                .iter()
+                .all(|f| f.y >= cutter.bottom() || f.x < cutter.x || f.x >= cutter.right())
+        );
     }
 
     #[test]

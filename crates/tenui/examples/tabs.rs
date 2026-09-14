@@ -2,12 +2,13 @@
 //!
 //! Run: `cargo run --example tabs`
 
-use std::io;
-use std::time::Duration;
+use std::{io, time::Duration};
 
-use tenui::layout::{BorderStyle, draw_border_with_title};
-use tenui::std_widgets::{StatusBar, StatusSegment, Tab, TabBar, ThemePalette};
-use tenui::{Color, Rect, Terminal, TextOverflow};
+use tenui::{
+    Color, Rect, Terminal, TextOverflow,
+    layout::{BorderStyle, draw_border_with_title},
+    std_widgets::{StatusBar, StatusSegment, Tab, TabBar, ThemePalette},
+};
 
 fn main() -> io::Result<()> {
     let mut term = Terminal::new()?;
@@ -23,18 +24,15 @@ fn main() -> io::Result<()> {
     loop {
         if crossterm::event::poll(Duration::from_millis(50))? {
             let ev = crossterm::event::read()?;
-            if let crossterm::event::Event::Key(k) = ev {
-                if k.kind != crossterm::event::KeyEventKind::Press {
-                    continue;
-                }
+            if let crossterm::event::Event::Key(k) = ev
+                && k.kind == crossterm::event::KeyEventKind::Press
+            {
                 match k.code {
                     crossterm::event::KeyCode::Char('q') | crossterm::event::KeyCode::Esc => break,
                     crossterm::event::KeyCode::Tab => tab_bar.select_next(),
                     crossterm::event::KeyCode::BackTab => tab_bar.select_prev(),
-                    crossterm::event::KeyCode::Char('w') => {
-                        if tab_bar.tabs.len() > 1 {
-                            tab_bar.close(tab_bar.active);
-                        }
+                    crossterm::event::KeyCode::Char('w') if tab_bar.tabs.len() > 1 => {
+                        tab_bar.close(tab_bar.active);
                     }
                     _ => {}
                 }

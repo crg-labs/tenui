@@ -2,8 +2,7 @@
 //!
 //! Run: `cargo run --example hello`
 
-use std::io;
-use std::time::Duration;
+use std::{io, time::Duration};
 
 use tenui::{Color, Modifier, Terminal};
 
@@ -14,11 +13,24 @@ fn main() -> io::Result<()> {
         let w = canvas.width();
         canvas.clear(Color::Reset);
         canvas.write_str_clipped(2, 1, "Hello from Tenui!", Color::Cyan, Color::Reset);
-        canvas.write_str_clipped(2, 3, "A thin, refined TUI framework for Rust.", Color::Reset, Color::Reset);
+        canvas.write_str_clipped(
+            2,
+            3,
+            "A thin, refined TUI framework for Rust.",
+            Color::Reset,
+            Color::Reset,
+        );
 
         let quit_msg = "Press any key to exit.";
         let x = w.saturating_sub(quit_msg.len() as u16 + 2);
-        canvas.set_string(x, canvas.height().saturating_sub(1), quit_msg, Color::DarkGray, Color::Reset, Modifier::ITALIC);
+        canvas.set_string(
+            x,
+            canvas.height().saturating_sub(1),
+            quit_msg,
+            Color::DarkGray,
+            Color::Reset,
+            Modifier::ITALIC,
+        );
     })?;
 
     loop {

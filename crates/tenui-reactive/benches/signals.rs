@@ -1,7 +1,4 @@
-use std::cell::Cell;
-use std::rc::Rc;
-
-use std::hint::black_box;
+use std::{cell::Cell, hint::black_box, rc::Rc};
 
 use criterion::{Criterion, criterion_group, criterion_main};
 use tenui_reactive::{Signal, batch};

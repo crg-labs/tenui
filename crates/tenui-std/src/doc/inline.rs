@@ -1,7 +1,6 @@
 use tenui_core::{Color, Modifier};
 
-use crate::rich::RichSpan;
-use crate::theme::ThemePalette;
+use crate::{rich::RichSpan, theme::ThemePalette};
 
 /// Decodes standard HTML entities (&quot;, &amp;, &lt;, &gt;, &copy;, numeric, etc.).
 fn decode_html_entity(chars: &[char]) -> Option<(String, usize)> {

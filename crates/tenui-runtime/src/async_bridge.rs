@@ -18,9 +18,7 @@ impl<M> AsyncBridge<M> {
     }
 
     pub fn sender(&self) -> AppMessageSender<M> {
-        AppMessageSender {
-            tx: self.tx.clone(),
-        }
+        AppMessageSender { tx: self.tx.clone() }
     }
 
     pub fn try_recv(&self) -> Option<AppMessage<M>> {

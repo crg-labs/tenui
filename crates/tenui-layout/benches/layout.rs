@@ -55,19 +55,31 @@ fn bench_nested_layout(c: &mut Criterion) {
             let mut ui = Ui::new();
             ui.column(Style::default(), |ui| {
                 for _ in 0..10 {
-                    ui.row(Style { size: Size { width: percent(1.0), height: length(20.0) }, ..Default::default() }, |ui| {
-                        for _ in 0..10 {
-                            ui.leaf(
-                                Style {
-                                    size: Size { width: percent(0.1), height: percent(1.0) },
-                                    ..Default::default()
-                                },
-                                |sv| {
-                                    sv.set_string(0, 0, ".", Color::Reset, Color::Reset, Modifier::empty());
-                                },
-                            );
-                        }
-                    });
+                    ui.row(
+                        Style {
+                            size: Size {
+                                width: percent(1.0),
+                                height: length(20.0),
+                            },
+                            ..Default::default()
+                        },
+                        |ui| {
+                            for _ in 0..10 {
+                                ui.leaf(
+                                    Style {
+                                        size: Size {
+                                            width: percent(0.1),
+                                            height: percent(1.0),
+                                        },
+                                        ..Default::default()
+                                    },
+                                    |sv| {
+                                        sv.set_string(0, 0, ".", Color::Reset, Color::Reset, Modifier::empty());
+                                    },
+                                );
+                            }
+                        },
+                    );
                 }
             });
             ui.render_to_buffer(&mut buf);
@@ -99,5 +111,11 @@ fn bench_grid_layout(c: &mut Criterion) {
     });
 }
 
-criterion_group!(benches, bench_layout_100, bench_layout_1000, bench_nested_layout, bench_grid_layout);
+criterion_group!(
+    benches,
+    bench_layout_100,
+    bench_layout_1000,
+    bench_nested_layout,
+    bench_grid_layout
+);
 criterion_main!(benches);

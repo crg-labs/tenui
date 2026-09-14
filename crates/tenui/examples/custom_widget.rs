@@ -2,8 +2,7 @@
 //!
 //! Run: `cargo run --example custom_widget`
 
-use std::io;
-use std::time::Duration;
+use std::{io, time::Duration};
 
 use tenui::{CanvasSubviewMut, Color, Modifier, Rect, Terminal};
 
@@ -40,7 +39,14 @@ impl ClockWidget {
             let x = cx as f64 + (radius as f64 * 2.0) * angle.cos();
             let y = cy as f64 + radius as f64 * angle.sin();
             let ch = if i == 0 { '1' } else { char::from(b'0' + (i as u8 % 10)) };
-            sv.set_char(x.round() as u16, y.round() as u16, ch, Color::Yellow, Color::Reset, Modifier::BOLD);
+            sv.set_char(
+                x.round() as u16,
+                y.round() as u16,
+                ch,
+                Color::Yellow,
+                Color::Reset,
+                Modifier::BOLD,
+            );
         }
 
         // Draw hands
@@ -57,12 +63,10 @@ impl ClockWidget {
             }
         };
 
-        let hour_angle = (self.hour as f64 + self.minute as f64 / 60.0) * std::f64::consts::PI / 6.0
-            - std::f64::consts::FRAC_PI_2;
-        let min_angle =
-            self.minute as f64 * std::f64::consts::PI / 30.0 - std::f64::consts::FRAC_PI_2;
-        let sec_angle =
-            self.second as f64 * std::f64::consts::PI / 30.0 - std::f64::consts::FRAC_PI_2;
+        let hour_angle =
+            (self.hour as f64 + self.minute as f64 / 60.0) * std::f64::consts::PI / 6.0 - std::f64::consts::FRAC_PI_2;
+        let min_angle = self.minute as f64 * std::f64::consts::PI / 30.0 - std::f64::consts::FRAC_PI_2;
+        let sec_angle = self.second as f64 * std::f64::consts::PI / 30.0 - std::f64::consts::FRAC_PI_2;
 
         draw_hand(sv, hour_angle, radius as f64 * 0.5, '\u{2588}', Color::White);
         draw_hand(sv, min_angle, radius as f64 * 0.7, '\u{2593}', Color::Cyan);
@@ -78,12 +82,14 @@ fn main() -> io::Result<()> {
     loop {
         if crossterm::event::poll(Duration::from_millis(0))? {
             let ev = crossterm::event::read()?;
-            if let crossterm::event::Event::Key(k) = ev {
-                if k.kind == crossterm::event::KeyEventKind::Press
-                    && matches!(k.code, crossterm::event::KeyCode::Char('q') | crossterm::event::KeyCode::Esc)
-                {
-                    break;
-                }
+            if let crossterm::event::Event::Key(k) = ev
+                && k.kind == crossterm::event::KeyEventKind::Press
+                && matches!(
+                    k.code,
+                    crossterm::event::KeyCode::Char('q') | crossterm::event::KeyCode::Esc
+                )
+            {
+                break;
             }
         }
 

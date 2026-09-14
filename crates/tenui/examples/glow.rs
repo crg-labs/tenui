@@ -8,17 +8,19 @@
 //!
 //! Run: `cargo run --example glow`
 
-use std::io;
-use std::time::{Duration, Instant};
+use std::{
+    io,
+    time::{Duration, Instant},
+};
 
 use tenui::{
     layout::{StyleExt, TerminalLayoutExt},
     prelude::*,
-    view,
     vfx::{
         glow::{BloomStack, GlowEffect, GlowFalloff},
         text::{TextEffect, TextOpticsCompositor},
     },
+    view,
 };
 
 fn main() -> io::Result<()> {
@@ -106,10 +108,10 @@ fn main() -> io::Result<()> {
 
                 for y in 0..h {
                     for x in 0..w {
-                        if let Some(src) = ui_term.front().get(x, y) {
-                            if let Some(dst) = buf.get_mut(x, y) {
-                                *dst = *src;
-                            }
+                        if let Some(src) = ui_term.front().get(x, y)
+                            && let Some(dst) = buf.get_mut(x, y)
+                        {
+                            *dst = *src;
                         }
                     }
                 }
@@ -177,7 +179,8 @@ fn main() -> io::Result<()> {
             let title = " TENUI GLOW EFFECTS ";
             let tx = w.saturating_sub(title.len() as u16) / 2;
             buf.set_string(
-                tx, 0,
+                tx,
+                0,
                 title,
                 Color::Rgb(200, 200, 255),
                 Color::Rgb(10, 10, 20),
@@ -188,7 +191,8 @@ fn main() -> io::Result<()> {
             let footer = " press any key to exit ";
             let fx = w.saturating_sub(footer.len() as u16) / 2;
             buf.set_string(
-                fx, h.saturating_sub(1),
+                fx,
+                h.saturating_sub(1),
                 footer,
                 Color::Rgb(80, 80, 100),
                 Color::Rgb(10, 10, 20),
@@ -198,10 +202,10 @@ fn main() -> io::Result<()> {
             // Blit composed buffer to canvas
             for y in 0..h {
                 for x in 0..w {
-                    if let Some(src) = buf.get(x, y) {
-                        if let Some(dst) = canvas.get_cell_mut(x, y) {
-                            *dst = *src;
-                        }
+                    if let Some(src) = buf.get(x, y)
+                        && let Some(dst) = canvas.get_cell_mut(x, y)
+                    {
+                        *dst = *src;
                     }
                 }
             }

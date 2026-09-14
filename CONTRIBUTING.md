@@ -5,7 +5,7 @@ basics for getting started.
 
 ## Prerequisites
 
-- Rust **1.85+** (edition 2024)
+- Rust **1.86+** (edition 2024)
 - A terminal emulator that supports the alternate screen
 
 ## Building
@@ -26,7 +26,7 @@ The project uses `rustfmt` with the settings in `rustfmt.toml`. Before
 submitting a PR, run:
 
 ```sh
-cargo +nightly fmt --all
+cargo fmt --all
 ```
 
 Clippy must also pass with no warnings:

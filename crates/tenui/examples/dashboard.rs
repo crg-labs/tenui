@@ -2,11 +2,12 @@
 //!
 //! Run: `cargo run --example dashboard`
 
-use std::io;
-use std::time::Duration;
+use std::{io, time::Duration};
 
-use tenui::layout::{BorderStyle, draw_border_with_title};
-use tenui::{Color, Modifier, Rect, Terminal, TextOverflow};
+use tenui::{
+    Color, Modifier, Rect, Terminal, TextOverflow,
+    layout::{BorderStyle, draw_border_with_title},
+};
 
 fn main() -> io::Result<()> {
     let mut term = Terminal::new()?;
@@ -15,12 +16,14 @@ fn main() -> io::Result<()> {
     loop {
         if crossterm::event::poll(Duration::from_millis(0))? {
             let ev = crossterm::event::read()?;
-            if let crossterm::event::Event::Key(k) = ev {
-                if k.kind == crossterm::event::KeyEventKind::Press
-                    && matches!(k.code, crossterm::event::KeyCode::Char('q') | crossterm::event::KeyCode::Esc)
-                {
-                    break;
-                }
+            if let crossterm::event::Event::Key(k) = ev
+                && k.kind == crossterm::event::KeyEventKind::Press
+                && matches!(
+                    k.code,
+                    crossterm::event::KeyCode::Char('q') | crossterm::event::KeyCode::Esc
+                )
+            {
+                break;
             }
         }
 
@@ -37,7 +40,14 @@ fn main() -> io::Result<()> {
             // Left panel: sparkline
             {
                 let mut sv = canvas.subview_mut(Rect::new(0, 1, half_w, body_h));
-                draw_border_with_title(&mut sv, BorderStyle::ROUNDED, "CPU Usage", TextOverflow::Clip, Color::Green, Color::Reset);
+                draw_border_with_title(
+                    &mut sv,
+                    BorderStyle::ROUNDED,
+                    "CPU Usage",
+                    TextOverflow::Clip,
+                    Color::Green,
+                    Color::Reset,
+                );
                 let inner_w = half_w.saturating_sub(2);
                 let inner_h = body_h.saturating_sub(2);
                 for x in 0..inner_w {
@@ -55,13 +65,15 @@ fn main() -> io::Result<()> {
             // Right panel: progress bars
             {
                 let mut sv = canvas.subview_mut(Rect::new(half_w, 1, w - half_w, body_h));
-                draw_border_with_title(&mut sv, BorderStyle::ROUNDED, "Services", TextOverflow::Clip, Color::Yellow, Color::Reset);
-                let bars = [
-                    ("API", 0.87),
-                    ("Database", 0.45),
-                    ("Cache", 0.92),
-                    ("Queue", 0.33),
-                ];
+                draw_border_with_title(
+                    &mut sv,
+                    BorderStyle::ROUNDED,
+                    "Services",
+                    TextOverflow::Clip,
+                    Color::Yellow,
+                    Color::Reset,
+                );
+                let bars = [("API", 0.87), ("Database", 0.45), ("Cache", 0.92), ("Queue", 0.33)];
                 let inner_w = (w - half_w).saturating_sub(4);
                 for (i, (name, pct)) in bars.iter().enumerate() {
                     let y = 2 + i as u16 * 2;
@@ -70,7 +82,13 @@ fn main() -> io::Result<()> {
                     let bar_w = (inner_w as f64 * pct) as u16;
                     for x in 0..inner_w {
                         let ch = if x < bar_w { '\u{2588}' } else { '\u{2591}' };
-                        let color = if *pct > 0.8 { Color::Green } else if *pct > 0.5 { Color::Yellow } else { Color::Red };
+                        let color = if *pct > 0.8 {
+                            Color::Green
+                        } else if *pct > 0.5 {
+                            Color::Yellow
+                        } else {
+                            Color::Red
+                        };
                         sv.set_char(2 + x, y + 1, ch, color, Color::Reset, Modifier::empty());
                     }
                 }

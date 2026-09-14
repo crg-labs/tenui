@@ -1,13 +1,14 @@
 use tenui_core::{Buffer, CanvasSubviewMut, Color, Modifier, Rect};
 use unicode_width::{UnicodeWidthChar, UnicodeWidthStr};
 
-use crate::rich::{RichSpan, wrap_rich_spans};
-use crate::selection::DocumentSelection;
-use crate::syntax::{Language, LineTokenizer, SyntaxTheme};
-use crate::text_table::TableAlignment;
-use crate::theme::ThemePalette;
-
 use super::parse_inline_markdown;
+use crate::{
+    rich::{RichSpan, wrap_rich_spans},
+    selection::DocumentSelection,
+    syntax::{Language, LineTokenizer, SyntaxTheme},
+    text_table::TableAlignment,
+    theme::ThemePalette,
+};
 
 /// Block elements in a Markdown document.
 #[derive(Debug, Clone, PartialEq)]

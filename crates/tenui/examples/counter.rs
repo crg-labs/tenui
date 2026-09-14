@@ -2,14 +2,14 @@
 //!
 //! Run: `cargo run --example counter`
 
-use std::io;
-use std::rc::Rc;
-use std::time::Duration;
+use std::{io, rc::Rc, time::Duration};
 
-use tenui::core::InputDemuxer;
-use tenui::reactive::{Invalidation, Signal};
-use tenui::runtime::App;
-use tenui::{Color, Modifier, Terminal};
+use tenui::{
+    Color, Modifier, Terminal,
+    core::InputDemuxer,
+    reactive::{Invalidation, Signal},
+    runtime::App,
+};
 
 fn main() -> io::Result<()> {
     let term = Terminal::new()?;
@@ -48,7 +48,14 @@ fn main() -> io::Result<()> {
             ..Default::default()
         },
         move |sv| {
-            sv.set_string(0, 0, "  [+] increment   [-] decrement   [q] quit", Color::DarkGray, Color::Reset, Modifier::empty());
+            sv.set_string(
+                0,
+                0,
+                "  [+] increment   [-] decrement   [q] quit",
+                Color::DarkGray,
+                Color::Reset,
+                Modifier::empty(),
+            );
         },
     );
 

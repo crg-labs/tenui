@@ -831,8 +831,7 @@ impl<'a> CanvasSubviewMut<'a> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::cell::Modifier;
-    use crate::color::Color;
+    use crate::{cell::Modifier, color::Color};
 
     // ---- Rect tests ----
 
@@ -1156,7 +1155,15 @@ mod tests {
         let mut buf = Buffer::new(20, 1);
         {
             let mut sub = buf.subview_mut(Rect::new(0, 0, 20, 1));
-            let w = sub.write_str_overflow(0, 0, "Hello World", 6, TextOverflow::Ellipsis, Color::Reset, Color::Reset);
+            let w = sub.write_str_overflow(
+                0,
+                0,
+                "Hello World",
+                6,
+                TextOverflow::Ellipsis,
+                Color::Reset,
+                Color::Reset,
+            );
             assert!(w <= 6);
         }
         let last_visible = (0..6u16).rev().find(|&x| buf.get(x, 0).unwrap().as_str() == "…");

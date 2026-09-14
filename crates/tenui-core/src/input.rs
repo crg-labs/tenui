@@ -227,8 +227,9 @@ impl InputDemuxer {
 
 #[cfg(test)]
 mod tests {
-    use super::*;
     use crossterm::event::{KeyCode, KeyEvent, KeyEventKind, KeyModifiers};
+
+    use super::*;
 
     fn key_press(code: KeyCode) -> InputEvent {
         InputEvent::Key(KeyEvent {
