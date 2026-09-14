@@ -73,12 +73,27 @@ jobs:
             tenui
           )
 
+          publish_crate() {
+            local crate="$1"
+            local attempts=5
+            for i in $(seq 1 $attempts); do
+              if cargo publish -p "$crate" --no-verify 2>&1; then
+                return 0
+              fi
+              if [ "$i" -lt "$attempts" ]; then
+                echo "  Attempt $i failed, waiting for index to propagate..."
+                sleep $((i * 30))
+              fi
+            done
+            echo "::error::Failed to publish $crate after $attempts attempts"
+            return 1
+          }
+
           for crate in "${CRATES[@]}"; do
             echo "::group::Publishing $crate"
-            cargo publish -p "$crate" --no-verify
+            publish_crate "$crate"
             echo "::endgroup::"
-            # crates.io index needs time to propagate before dependents can resolve
-            sleep 30
+            sleep 20
           done
 
   dry-run:
