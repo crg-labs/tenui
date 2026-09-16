@@ -95,12 +95,19 @@ jobs:
             local crate="$1"
             local local_version
             local_version=$(get_crate_version "$crate")
-            local search_result
-            search_result=$(cargo search --limit 1 "$crate" 2>/dev/null)
 
-            if echo "$search_result" | grep -q "^${crate} = "; then
+            # Use crates.io API for exact name match (cargo search does fuzzy matching)
+            local http_code
+            local api_response
+            api_response=$(curl -s -w "\n%{http_code}" "https://crates.io/api/v1/crates/${crate}" \
+              -H "User-Agent: tenui-publish-workflow")
+            http_code=$(echo "$api_response" | tail -1)
+            local body
+            body=$(echo "$api_response" | sed '$d')
+
+            if [ "$http_code" = "200" ]; then
               local published_version
-              published_version=$(echo "$search_result" | grep "^${crate} = " | sed 's/.*"\(.*\)".*/\1/')
+              published_version=$(echo "$body" | jq -r '.crate.max_version')
               if [ "$published_version" = "$local_version" ]; then
                 echo "published"
               else
@@ -144,7 +151,7 @@ jobs:
               echo "$output"
 
               # Already published (index hadn't caught up when we checked)
-              if echo "$output" | grep -qi "already uploaded"; then
+              if echo "$output" | grep -qi "already uploaded\|already exists"; then
                 echo "  Already published (detected during upload), skipping"
                 return 0
               fi
